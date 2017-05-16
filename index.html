@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>three.js app</title>
+		<link type = "text/css" rel = "stylesheet" href = "style.css">
+	</head>
+	<body>
+    <div class = "panel bottom">
+      <div class = "row caption">
+					Set box size
+				</div>
+				<div class = "row">
+					<div class = "col-3rd">
+						<div class = "label">
+							length
+						</div>
+						<div class = "input">
+							<input type = "text" id = "outer-box-length">
+						</div>
+					</div>
+					<div class = "col-3rd">
+						<div class = "label">
+							width
+						</div>
+						<div class = "input">
+							<input type = "text" id = "outer-box-width">
+						</div>
+					</div>
+					<div class = "col-3rd">
+						<div class = "label">
+							height
+						</div>
+						<div class = "input">
+							<input type = "text" id = "outer-box-height">
+						</div>
+					</div>
+				</div>
+    </div>
+    <div class = "right">
+      <div class = "panel control">
+        <div class = "row caption">
+  					Zoom
+  				</div>
+  				<div class = "row">
+  					<div class = "half" style = "float :right;">
+  						<button id = "zoomin" class = "zoom plus">+</button>
+  						<button id = "zoomout" class = "zoom minus">-</button>
+  					</div>
+  				</div>
+  				<div class = "row caption">
+  					Rotate
+  				</div>
+  				<div class = "row">
+  					<button id = "rotateup" class = "rotate up">UP</button>
+  				</div>
+  				<div class = "row">
+  					<button id = "rotateleft" class = "rotate left">LEFT</button>
+  					<button id = "rotateright" class = "rotate right-btn">RIGHT</button>
+  				</div>
+  				<div class = "row">
+  					<button id = "rotatedown" class = "rotate down">DOWN</button>
+  				</div>
+      </div>
+      <div class = "panel addBox">
+        <div class = "row caption">
+  					Add a box
+  				</div>
+  				<div class = "row">
+  					<div class = "label">
+  						length
+  					</div>
+  					<div class = "input">
+  						<input id = "subBox-length" type = "text">
+  					</div>
+  				</div>
+  				<div class = "row">
+  					<div class = "label">
+  						width
+  					</div>
+  					<div class = "input">
+  						<input id = "subBox-width" type = "text">
+  					</div>
+  				</div>
+  				<div class = "row">
+  					<div class = "label">
+  						height
+  					</div>
+  					<div class = "input">
+  						<input id = "subBox-height" type = "text">
+  					</div>
+  				</div>
+  				<div class = "row">
+  					<div class = "label">
+  						color
+  					</div>
+  					<div class = "input">
+  						<input id = "subBox-color" type = "color">
+  					</div>
+  				</div>
+  				<div class = "row">
+  					<button id = "addBox" class = "button pull-right">ADD</button>
+  				</div>
+      </div>
+    </div>
+    <div id = "screen"></div>
+		<script src = "library/three.js"></script>
+		<script src = "library/OrbitControls.js"></script>
+		<script src = "script.js"></script>
+	</body>
+</html>

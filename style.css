@@ -1,0 +1,86 @@
+body {
+	margin: 0;
+}
+.panel{
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: #ccc;
+}
+.bottom{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+.right{
+	position:fixed;
+	top: 0;
+	right: 0;
+}
+.row{
+	width : 90%;
+	margin : 20px 0px;
+}
+.row:after{
+	clear : both;
+	content: ' ';
+	display: table;
+}
+#screen-add, #size-zoom{
+	height : 400px;
+}
+.plus{
+	margin-left: -20px;
+}
+.half{
+	width : 50%;
+	height : 100%;
+	float : left;
+}
+.label, .caption{
+	text-align : center;
+}
+.label{
+	width : 40%;
+	float : left;
+}
+.input{
+	width : 60%;
+	float : left;
+}
+.pull-right{
+	position: relative;
+	left: 60%;
+}
+.col-3rd{
+	width : 33.33%;
+	float : left;
+}
+.col-3rd .input input{
+	width : 100%;
+}
+.zoom{
+	font-size : 20px;
+}
+.rotate{
+	position : relative;
+}
+.up{
+	left : 45%;
+}
+.left{
+	left : 10%;
+}
+.right-btn{
+	left: 45%;
+}
+.down{
+	left : 45%;
+}
+#subBox-length, #subBox-height, #subBox-width{
+	width: 100%;
+}
+canvas {
+	width: 100%;
+	height: 100%
+}
