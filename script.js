@@ -55,10 +55,10 @@ var mvp = {
     SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 
     // Prepare perspective camera
-    var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 1000;
+    var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 60000;
     this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
     this.scene.add(this.camera);
-    this.camera.position.set(100, 0, 0);
+    this.camera.position.set(2800, 0, 0);
     this.camera.lookAt(new THREE.Vector3(0,0,0));
 
     // Prepare webgl renderer
@@ -77,7 +77,7 @@ var mvp = {
     this.controls = new THREE.OrbitControls(this.camera, this.container);
     this.controls.enablePan = true; //enable outer box with right click
     this.controls.target = new THREE.Vector3(0, 0, 0);
-    this.controls.maxDistance = 150; // maximum camera distance from (0, 0, 0) to control rotate, zoom and pan
+    this.controls.maxDistance = 29999; // maximum camera distance from (0, 0, 0) to control rotate, zoom and pan
 
     // Prepare clock
     this.clock = new THREE.Clock();
@@ -86,7 +86,7 @@ var mvp = {
     this.scene.add( new THREE.AmbientLight(0x444444)); // add ambient light
 
     var dirLight = new THREE.DirectionalLight(0xffffff); // add directional light
-    dirLight.position.set(200, 200, 1000).normalize();
+    dirLight.position.set(200, 200, 2000).normalize();
     this.camera.add(dirLight);
     this.camera.add(dirLight.target);
 
@@ -94,14 +94,14 @@ var mvp = {
     this.addSkybox();
 
     // Plane, that helps to determinate an intersection position
-    this.plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 500, 8, 8), new THREE.MeshBasicMaterial({color: 0xffffff}));
+    this.plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(3000, 3000, 8, 8), new THREE.MeshBasicMaterial({color: 0xffffff}));
     this.plane.visible = false;
     this.scene.add(this.plane);
 
     // Add container box
-    this.scaleX = 50;
-    this.scaleY = 25;
-    this.scaleZ = 50;
+    this.scaleX = 2000;
+    this.scaleY = 2000;
+    this.scaleZ = 2000;
     var geometry = new THREE.BoxGeometry( this.scaleX, this.scaleY, this.scaleZ );
 
     // material
@@ -155,7 +155,7 @@ var mvp = {
     };
   },
   addSkybox: function() { // add sky to scene
-    var iSBrsize = 500;
+    var iSBrsize = 30000;
     var uniforms = {
       topColor: {type: "c", value: new THREE.Color(0xffffff)}, bottomColor: {type: "c", value: new THREE.Color(0x0077ff)},
       offset: {type: "f", value: iSBrsize}, exponent: {type: "f", value: 1.5}
@@ -218,23 +218,23 @@ var mvp = {
       // Reposition the object based on the intersection point with the plane
       mvp.selection.position.copy(intersects[0].point.sub(mvp.offset));
 
-      if( mvp.selection.position.x < -mvp.scaleX / 2 + mvp.selection.geometry.parameters.width / 2 ){
-          mvp.selection.position.x = -mvp.scaleX / 2 + mvp.selection.geometry.parameters.width / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.x < -mvp.scaleX / 2000 * document.getElementById('outer-box-width').value / 2 + mvp.selection.geometry.parameters.width / 2 ){
+          mvp.selection.position.x = -mvp.scaleX / 2000 * document.getElementById('outer-box-width').value / 2 + mvp.selection.geometry.parameters.width / 2;//prevent small boxes not to get out of big box
       }
-      if( mvp.selection.position.x > mvp.scaleX / 2 - mvp.selection.geometry.parameters.width / 2 ){
-          mvp.selection.position.x = mvp.scaleX / 2 - mvp.selection.geometry.parameters.width / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.x > mvp.scaleX / 2000 * document.getElementById('outer-box-width').value / 2 - mvp.selection.geometry.parameters.width / 2 ){
+          mvp.selection.position.x = mvp.scaleX / 2000 * document.getElementById('outer-box-width').value / 2 - mvp.selection.geometry.parameters.width / 2;//prevent small boxes not to get out of big box
       }
-      if( mvp.selection.position.y < -mvp.scaleY / 2 + mvp.selection.geometry.parameters.height / 2 ){
-          mvp.selection.position.y = -mvp.scaleY / 2 + mvp.selection.geometry.parameters.height / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.y < -mvp.scaleY / 2000 * document.getElementById('outer-box-height').value / 2 + mvp.selection.geometry.parameters.height / 2 ){
+          mvp.selection.position.y = -mvp.scaleY / 2000 * document.getElementById('outer-box-height').value / 2 + mvp.selection.geometry.parameters.height / 2;//prevent small boxes not to get out of big box
       }
-      if( mvp.selection.position.y > mvp.scaleY / 2 - mvp.selection.geometry.parameters.height / 2 ){
-          mvp.selection.position.y = mvp.scaleY / 2 - mvp.selection.geometry.parameters.height / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.y > mvp.scaleY / 2000 * document.getElementById('outer-box-height').value / 2 - mvp.selection.geometry.parameters.height / 2 ){
+          mvp.selection.position.y = mvp.scaleY / 2000 * document.getElementById('outer-box-height').value / 2 - mvp.selection.geometry.parameters.height / 2;//prevent small boxes not to get out of big box
       }
-      if( mvp.selection.position.z < -mvp.scaleX / 2 + mvp.selection.geometry.parameters.depth / 2 ){
-          mvp.selection.position.z = -mvp.scaleX / 2 + mvp.selection.geometry.parameters.depth / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.z < -mvp.scaleZ / 2000 * document.getElementById('outer-box-length').value / 2 + mvp.selection.geometry.parameters.depth / 2 ){
+          mvp.selection.position.z = -mvp.scaleZ / 2000 * document.getElementById('outer-box-length').value / 2 + mvp.selection.geometry.parameters.depth / 2;//prevent small boxes not to get out of big box
       }
-      if( mvp.selection.position.z > mvp.scaleX / 2 - mvp.selection.geometry.parameters.depth / 2 ){
-          mvp.selection.position.z = mvp.scaleX / 2 - mvp.selection.geometry.parameters.depth / 2;//prevent small boxes not to get out of big box
+      if( mvp.selection.position.z > mvp.scaleZ / 2000 * document.getElementById('outer-box-length').value / 2 - mvp.selection.geometry.parameters.depth / 2 ){
+          mvp.selection.position.z = mvp.scaleZ / 2000 * document.getElementById('outer-box-length').value / 2 - mvp.selection.geometry.parameters.depth / 2;//prevent small boxes not to get out of big box
       }
       var flag = 0;
       mvp.objects.forEach(function(item, index){ // prevent seleected box not to get into other boxes (check 8 vertices of selected box)
